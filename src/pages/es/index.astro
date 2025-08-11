@@ -1,0 +1,152 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout title="Plenu — Hábitos saludables con IA" lang="es" description="Listas de comidas, compras y seguimiento para adoptar hábitos saludables.">
+  <header class="section bg-[var(--color-primary-soft)]">
+    <div class="container-max">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="/favicon.svg" alt="Plenu" class="h-8 w-8" />
+          <span class="font-semibold">Plenu</span>
+        </div>
+        <nav class="hidden sm:flex items-center gap-6 text-[15px] text-text-secondary">
+          <a href="#beneficios">Beneficios</a>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#plan">Plan</a>
+          <a href="#faq">FAQ</a>
+          <a href="#proposito">Propósito</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="/en" class="text-[13px] text-text-secondary">EN</a>
+          <a href="#cta" class="btn-primary">Comenzar ahora</a>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 mt-10 md:mt-16 items-center">
+        <div>
+          <p class="inline-flex items-center gap-2 text-[13px] font-medium text-text-secondary bg-[var(--accent-soft)] text-[var(--accent)] px-3 py-1 rounded-full">Alpha • Cupos limitados</p>
+          <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">¿Quieres mejorar tus hábitos de alimentación y autocuidado?</h1>
+          <p class="mt-4 text-[15px] text-text-secondary max-w-prose">Usamos IA para entregarte listas de comidas semanales, inspiradas en las recomendaciones de la OMS y tus preferencias e intereses.</p>
+          <div id="cta" class="mt-6 flex gap-3">
+            <a href="#plan" class="btn-primary">Comenzar ahora</a>
+            <a href="#beneficios" class="btn-secondary">Saber más</a>
+          </div>
+        </div>
+        <div class="h-64 md:h-80 bg-[var(--color-primary-soft)] rounded-[12px] border border-border flex items-center justify-center">
+          <span class="text-text-secondary">Imagen/Mockup</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="beneficios" class="section">
+      <div class="container-max">
+        <h2 class="text-2xl md:text-3xl font-semibold">Adoptar hábitos es más fácil con Plenu</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+          <div class="card p-5">
+            <h3 class="font-semibold">¿Qué comer?</h3>
+            <p class="mt-2 text-text-secondary">Indica tus preferencias y obtén una lista de comidas para cada semana</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">¿Qué alimentos comprar?</h3>
+            <p class="mt-2 text-text-secondary">Obtén una lista de compras para cocinar las comidas de cada semana</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">¿Cómo has avanzado?</h3>
+            <p class="mt-2 text-text-secondary">Registra tus avances directamente en la app y monitorea tu progreso</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="section bg-[var(--color-bg-3)]">
+      <div class="container-max grid md:grid-cols-4 gap-6">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl md:text-3xl font-semibold">¿Cómo funciona Plenu?</h2>
+          <p class="mt-3 text-text-secondary">Plenu te ayuda a planificar tus comidas, organizar tus compras y llevar un registro de tu progreso.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 md:col-span-2">
+          <div class="card p-5">
+            <h3 class="font-semibold">Completa tu perfil</h3>
+            <p class="mt-2 text-text-secondary">Indícanos tus intereses y preferencias.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">Obtén tu lista de comidas</h3>
+            <p class="mt-2 text-text-secondary">Accede a una lista semanal con 4 comidas diarias.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">Revisa lo que te falta comprar</h3>
+            <p class="mt-2 text-text-secondary">Obtén una lista semanal de alimentos a comprar.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">Haz seguimiento</h3>
+            <p class="mt-2 text-text-secondary">Registra tus comidas completadas e indicadores de seguimiento.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plan" class="section">
+      <div class="container-max">
+        <div class="max-w-xl">
+          <h2 class="text-2xl md:text-3xl font-semibold">Un plan gratuito para partir</h2>
+          <p class="mt-2 text-text-secondary">Plenu está en su versión experimental (Alpha) y será gratis por tiempo limitado para recibir tu feedback y mejorar la experiencia.</p>
+          <div class="card p-6 mt-4">
+            <div class="text-3xl font-bold">$0<span class="text-[15px] font-medium text-text-secondary">/mes</span></div>
+            <ul class="mt-3 list-disc list-inside text-[15px] text-text-secondary">
+              <li>Acceso a la app en iOS</li>
+              <li>Lista semanal de comidas creada con IA</li>
+              <li>Lista semanal de alimentos a comprar creada con IA</li>
+              <li>Registro de cumplimiento de comidas e indicadores en la app</li>
+            </ul>
+            <a href="#cta" class="btn-primary mt-4 inline-flex">Comenzar ahora</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section bg-[var(--color-bg-3)]">
+      <div class="container-max">
+        <h2 class="text-2xl md:text-3xl font-semibold">Preguntas frecuentes</h2>
+        <div class="mt-4 grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-semibold">¿Plenu reemplaza la consulta con un profesional de la salud?</h3>
+            <p class="mt-2 text-text-secondary">No. Plenu complementa, no reemplaza, la consulta profesional.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">¿Cómo protegen mis datos?</h3>
+            <p class="mt-2 text-text-secondary">Cuidamos tu privacidad y aplicamos buenas prácticas de seguridad.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">¿Plenu puede equivocarse?</h3>
+            <p class="mt-2 text-text-secondary">Sí, por eso es importante tu criterio y feedback.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">¿Aún tienes dudas?</h3>
+            <p class="mt-2 text-text-secondary">Escríbenos y te ayudamos a resolverlas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proposito" class="section">
+      <div class="container-max max-w-3xl">
+        <h2 class="text-2xl md:text-3xl font-semibold">¿Por qué Plenu? Nuestro propósito</h2>
+        <p class="mt-2 text-text-secondary">Sabemos que cambiar hábitos de alimentación y autocuidado es un desafío enorme, sobre todo cuando estás en el otro extremo. Por eso creamos Plenu: para usar la tecnología y llevar bienestar a las personas, empezando por nosotros mismos.</p>
+        <p class="mt-2 text-text-secondary">Caminemos juntos.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section border-t border-border text-[13px] text-text-secondary">
+    <div class="container-max flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© {new Date().getFullYear()} Plenu</span>
+      <div class="flex items-center gap-4">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+

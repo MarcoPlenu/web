@@ -1,0 +1,152 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+<Layout title="Plenu — Healthy habits with AI" lang="en" description="Weekly meals, groceries and tracking to build healthy habits.">
+  <header class="section bg-[var(--color-primary-soft)]">
+    <div class="container-max">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="/favicon.svg" alt="Plenu" class="h-8 w-8" />
+          <span class="font-semibold">Plenu</span>
+        </div>
+        <nav class="hidden sm:flex items-center gap-6 text-[15px] text-text-secondary">
+          <a href="#benefits">Benefits</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#plan">Plan</a>
+          <a href="#faq">FAQ</a>
+          <a href="#purpose">Purpose</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="/es" class="text-[13px] text-text-secondary">ES</a>
+          <a href="#cta" class="btn-primary">Get started</a>
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 mt-10 md:mt-16 items-center">
+        <div>
+          <p class="inline-flex items-center gap-2 text-[13px] font-medium text-text-secondary bg-[var(--accent-soft)] text-[var(--accent)] px-3 py-1 rounded-full">Alpha • Limited spots</p>
+          <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Want to improve your eating and self-care habits?</h1>
+          <p class="mt-4 text-[15px] text-text-secondary max-w-prose">We use AI to provide weekly meal plans inspired by WHO guidelines and your preferences.</p>
+          <div id="cta" class="mt-6 flex gap-3">
+            <a href="#plan" class="btn-primary">Get started</a>
+            <a href="#benefits" class="btn-secondary">Learn more</a>
+          </div>
+        </div>
+        <div class="h-64 md:h-80 bg-[var(--color-primary-soft)] rounded-[12px] border border-border flex items-center justify-center">
+          <span class="text-text-secondary">Image/Mockup</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="benefits" class="section">
+      <div class="container-max">
+        <h2 class="text-2xl md:text-3xl font-semibold">Building habits is easier with Plenu</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+          <div class="card p-5">
+            <h3 class="font-semibold">What to eat?</h3>
+            <p class="mt-2 text-text-secondary">Set your preferences and get a weekly list of meals.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">What to buy?</h3>
+            <p class="mt-2 text-text-secondary">Get a weekly grocery list to cook your meals.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">How are you doing?</h3>
+            <p class="mt-2 text-text-secondary">Track your progress directly in the app.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section bg-[var(--color-bg-3)]">
+      <div class="container-max grid md:grid-cols-4 gap-6">
+        <div class="md:col-span-2">
+          <h2 class="text-2xl md:text-3xl font-semibold">How does Plenu work?</h2>
+          <p class="mt-3 text-text-secondary">Plenu helps you plan meals, organize groceries, and track your progress.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 md:col-span-2">
+          <div class="card p-5">
+            <h3 class="font-semibold">Complete your profile</h3>
+            <p class="mt-2 text-text-secondary">Tell us your interests and preferences.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">Get your meal list</h3>
+            <p class="mt-2 text-text-secondary">Access a weekly list with 4 meals per day.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">Check what to buy</h3>
+            <p class="mt-2 text-text-secondary">Get a weekly list of foods to buy.</p>
+          </div>
+          <div class="card p-5">
+            <h3 class="font-semibold">Track</h3>
+            <p class="mt-2 text-text-secondary">Record completed meals and tracking indicators.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plan" class="section">
+      <div class="container-max">
+        <div class="max-w-xl">
+          <h2 class="text-2xl md:text-3xl font-semibold">A free plan to start</h2>
+          <p class="mt-2 text-text-secondary">Plenu is in Alpha and will be free for a limited time to gather feedback and improve.</p>
+          <div class="card p-6 mt-4">
+            <div class="text-3xl font-bold">$0<span class="text-[15px] font-medium text-text-secondary">/mo</span></div>
+            <ul class="mt-3 list-disc list-inside text-[15px] text-text-secondary">
+              <li>Access to the iOS app</li>
+              <li>Weekly meal list powered by AI</li>
+              <li>Weekly grocery list powered by AI</li>
+              <li>Meal completion and indicators tracking</li>
+            </ul>
+            <a href="#cta" class="btn-primary mt-4 inline-flex">Get started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section bg-[var(--color-bg-3)]">
+      <div class="container-max">
+        <h2 class="text-2xl md:text-3xl font-semibold">Frequently asked questions</h2>
+        <div class="mt-4 grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="font-semibold">Does Plenu replace professional health advice?</h3>
+            <p class="mt-2 text-text-secondary">No. Plenu complements, not replaces, professional advice.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">How do you protect my data?</h3>
+            <p class="mt-2 text-text-secondary">We care about your privacy and follow best security practices.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Can Plenu be wrong?</h3>
+            <p class="mt-2 text-text-secondary">Yes, that's why your judgment and feedback are important.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Still have questions?</h3>
+            <p class="mt-2 text-text-secondary">Write to us and we'll help you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="purpose" class="section">
+      <div class="container-max max-w-3xl">
+        <h2 class="text-2xl md:text-3xl font-semibold">Why Plenu? Our purpose</h2>
+        <p class="mt-2 text-text-secondary">We know changing habits is hard. That's why we created Plenu: to use technology to bring well-being to people, starting with ourselves.</p>
+        <p class="mt-2 text-text-secondary">Let's walk together.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="section border-t border-border text-[13px] text-text-secondary">
+    <div class="container-max flex flex-col sm:flex-row items-center justify-between gap-4">
+      <span>© {new Date().getFullYear()} Plenu</span>
+      <div class="flex items-center gap-4">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+

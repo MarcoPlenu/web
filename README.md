@@ -1,43 +1,28 @@
-# Astro Starter Kit: Minimal
+# Plenu — Landing (Astro)
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+- Stack: Astro + TailwindCSS
+- Gestor: pnpm
+- i18n: rutas /es y /en (redirección desde / a /es)
+- Branding aplicado según `docs/BRAND_GUIDE.md`
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Scripts
 
-## 🚀 Project Structure
+- `pnpm dev` — entorno local
+- `pnpm build` — build de producción
+- `pnpm preview` — previsualización del build
 
-Inside of your Astro project, you'll see the following folders and files:
+## Deploy
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- Vercel recomendado. Proyecto Astro estándar (Node 18+). Añadir repo en GitHub y conectar en Vercel.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Estructura
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- `src/layouts/Layout.astro` — layout base con CSS global y metadatos
+- `src/pages/index.astro` — redirige a `/es`
+- `src/pages/es/index.astro` — página ES
+- `src/pages/en/index.astro` — página EN
+- `src/styles/global.css` — variables y utilidades Tailwind
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Branding
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Seguir tokens, tipografía y reglas en `docs/BRAND_GUIDE.md`. Reutilizados como CSS vars y en Tailwind.

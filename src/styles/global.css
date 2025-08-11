@@ -1,1 +1,35 @@
 @import "tailwindcss";
+
+/* Variables de marca (Brand Guide) */
+:root{
+  --color-primary:#378560; --color-primary-light:#4A9B73; --color-primary-dark:#2A6B4D; --color-primary-soft:#E8F3ED;
+  --color-secondary:#10B981; --color-secondary-light:#34D399; --color-secondary-dark:#059669; --color-secondary-soft:#D1FAE5;
+  --color-bg:#FFFFFF; --color-bg-2:#FAFAFA; --color-bg-3:#F5F5F5;
+  --text-1:#1F2937; --text-2:#6B7280; --text-3:#9CA3AF;
+  --border:#E5E7EB; --border-focus:#378560;
+  --accent:#8B5CF6; --accent-light:#A78BFA; --accent-soft:#EDE9FE;
+}
+
+@layer base{
+  html{ scroll-behavior: smooth; }
+  html, body{
+    color: var(--text-1);
+    background: var(--color-bg);
+  }
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a{ @apply text-primary hover:opacity-90; }
+  :focus-visible{ outline: 2px solid var(--border-focus); outline-offset: 2px; }
+}
+
+@layer utilities{
+  .container-max{ @apply max-w-screen-xl mx-auto px-6 sm:px-8; }
+  .section{ @apply py-12 sm:py-16 md:py-20; }
+  .card{ @apply bg-bg-2 rounded-[12px] shadow-[0_1px_2px_rgba(0,0,0,.08)] border border-border; }
+  .btn{ @apply inline-flex items-center justify-center rounded-[8px] px-5 py-3 text-[15px] font-semibold; }
+  .btn-primary{ @apply btn bg-primary text-white; }
+  .btn-secondary{ @apply btn border border-primary text-primary bg-primary-soft; }
+}
