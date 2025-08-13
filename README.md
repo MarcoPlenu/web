@@ -78,3 +78,5 @@ Headers:
 
 - Los commits se realizan solo bajo indicación (flujo acordado)
 - Iconografía: Ionicons vía script en `Layout.astro`
+
+— Trigger inicial de CI/CD: actualización menor del README.
