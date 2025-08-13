@@ -2,85 +2,202 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="Plenu — Healthy habits with AI" lang="en" description="Weekly meals, groceries and tracking to build healthy habits.">
-  <header class="section bg-[var(--color-primary-soft)]">
-    <div class="container-max">
+  <header class="sticky top-0 z-50 bg-[var(--color-bg)]/70 backdrop-blur border-b border-border">
+    <div class="container-max py-3">
       <div class="flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <img src="/favicon.svg" alt="Plenu" class="h-8 w-8" />
-          <span class="font-semibold">Plenu</span>
+          <img src="/logo_plenu.png" alt="Plenu" class="w-[120px] h-auto" />
         </div>
-        <nav class="hidden sm:flex items-center gap-6 text-[15px] text-text-secondary">
-          <a href="#benefits">Benefits</a>
-          <a href="#how-it-works">How it works</a>
-          <a href="#plan">Plan</a>
-          <a href="#faq">FAQ</a>
-          <a href="#purpose">Purpose</a>
+        <nav class="hidden sm:flex items-center gap-6 text-[15px]">
+          <a href="#benefits" class="text-text-primary hover:opacity-80">Benefits</a>
+          <a href="#how-it-works" class="text-text-primary hover:opacity-80">How it works</a>
+          <a href="#everything-you-need" class="text-text-primary hover:opacity-80">Everything you need</a>
+          <a href="#plan" class="text-text-primary hover:opacity-80">Plan</a>
+          <a href="#faq" class="text-text-primary hover:opacity-80">FAQ</a>
+          <a href="#purpose" class="text-text-primary hover:opacity-80">Purpose</a>
         </nav>
-        <div class="flex items-center gap-3">
-          <a href="/es" class="text-[13px] text-text-secondary">ES</a>
-          <a href="#cta" class="btn-primary">Get started</a>
+        <div class="flex items-center gap-2 flex-nowrap">
+          <a href="/es" class="text-[13px] text-text-secondary shrink-0">ES</a>
+          <a href="#plan" class="btn btn-primary btn--md btn--center shrink-0">
+            Get started
+            <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu" class="sm:hidden p-2 rounded-md text-text-primary">
+            <ion-icon id="icon-open" name="menu-outline" class="text-[22px]"></ion-icon>
+            <ion-icon id="icon-close" name="close-outline" class="text-[22px] hidden"></ion-icon>
+          </button>
         </div>
       </div>
-      <div class="grid md:grid-cols-2 gap-8 md:gap-12 mt-10 md:mt-16 items-center">
+    </div>
+    <div id="mobile-menu" class="sm:hidden hidden border-t border-border">
+      <div class="container-max py-3">
+        <nav class="flex flex-col gap-3 text-[15px]">
+          <a href="#benefits" class="text-text-primary">Benefits</a>
+          <a href="#how-it-works" class="text-text-primary">How it works</a>
+          <a href="#everything-you-need" class="text-text-primary">Everything you need</a>
+          <a href="#plan" class="text-text-primary">Plan</a>
+          <a href="#faq" class="text-text-primary">FAQ</a>
+          <a href="#purpose" class="text-text-primary">Purpose</a>
+        </nav>
+      </div>
+    </div>
+    <script>
+      const btn = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('icon-open');
+      const iconClose = document.getElementById('icon-close');
+      btn?.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        menu?.classList.toggle('hidden');
+        iconOpen?.classList.toggle('hidden');
+        iconClose?.classList.toggle('hidden');
+      });
+    </script>
+  </header>
+
+  <section class="bg-[var(--color-bg)]">
+    <div class="container-max">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-12 py-10 md:py-16 items-center">
         <div>
           <p class="inline-flex items-center gap-2 text-[13px] font-medium text-text-secondary bg-[var(--accent-soft)] text-[var(--accent)] px-3 py-1 rounded-full">Alpha • Limited spots</p>
           <h1 class="mt-4 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">Want to improve your eating and self-care habits?</h1>
           <p class="mt-4 text-[15px] text-text-secondary max-w-prose">We use AI to provide weekly meal plans inspired by WHO guidelines and your preferences.</p>
-          <div id="cta" class="mt-6 flex gap-3">
-            <a href="#plan" class="btn-primary">Get started</a>
-            <a href="#benefits" class="btn-secondary">Learn more</a>
+          <div id="cta" class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a href="#plan" class="btn btn-primary btn--lg">
+              What's the plan?
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a href="#benefits" class="btn btn-secondary btn--lg">Learn more</a>
           </div>
         </div>
-        <div class="h-64 md:h-80 bg-[var(--color-primary-soft)] rounded-[12px] border border-border flex items-center justify-center">
-          <span class="text-text-secondary">Image/Mockup</span>
+        <div class="bg-[var(--color-bg)] flex items-center justify-center">
+          <img src="/banner_plenu_x2.png" alt="Plenu app preview" class="h-auto w-auto max-w-full" />
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <main>
     <section id="benefits" class="section">
       <div class="container-max">
-        <h2 class="text-2xl md:text-3xl font-semibold">Building habits is easier with Plenu</h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-          <div class="card p-5">
-            <h3 class="font-semibold">What to eat?</h3>
-            <p class="mt-2 text-text-secondary">Set your preferences and get a weekly list of meals.</p>
+        <h2 class="text-center font-bold tracking-tight text-[28px] leading-[1.25] sm:text-[32px] md:text-[36px] lg:text-[40px] text-[var(--color-text-primary)]">Building habits is easier with Plenu</h2>
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-7 mt-6">
+          <div class="bg-white rounded-[14px] px-5 py-5 shadow-[0_10px_18px_rgba(0,0,0,.06)] text-center">
+            <h3 class="font-semibold text-[18px] text-text-primary m-0">What to eat?</h3>
+            <p class="mt-2 text-text-secondary text-[15px]">Set your preferences and get a weekly list of meals.</p>
           </div>
-          <div class="card p-5">
-            <h3 class="font-semibold">What to buy?</h3>
-            <p class="mt-2 text-text-secondary">Get a weekly grocery list to cook your meals.</p>
+          <div class="bg-white rounded-[14px] px-5 py-5 shadow-[0_10px_18px_rgba(0,0,0,.06)] text-center">
+            <h3 class="font-semibold text-[18px] text-text-primary m-0">What to buy?</h3>
+            <p class="mt-2 text-text-secondary text-[15px]">Get a weekly grocery list to cook your meals.</p>
           </div>
-          <div class="card p-5">
-            <h3 class="font-semibold">How are you doing?</h3>
-            <p class="mt-2 text-text-secondary">Track your progress directly in the app.</p>
+          <div class="bg-white rounded-[14px] px-5 py-5 shadow-[0_10px_18px_rgba(0,0,0,.06)] text-center">
+            <h3 class="font-semibold text-[18px] text-text-primary m-0">How are you doing?</h3>
+            <p class="mt-2 text-text-secondary text-[15px]">Track your progress directly in the app.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="how-it-works" class="section bg-[var(--color-bg-3)]">
-      <div class="container-max grid md:grid-cols-4 gap-6">
-        <div class="md:col-span-2">
-          <h2 class="text-2xl md:text-3xl font-semibold">How does Plenu work?</h2>
-          <p class="mt-3 text-text-secondary">Plenu helps you plan meals, organize groceries, and track your progress.</p>
+    
+
+    
+
+    <section id="how-it-works" class="section bg-[var(--color-bg)]">
+      <div class="container-max">
+        <h2 class="text-center font-bold tracking-tight text-[28px] leading-[1.25] sm:text-[32px] md:text-[36px] lg:text-[40px] text-[var(--color-text-primary)] mb-2">How it works</h2>
+        <p class="text-center text-[15px] sm:text-[16px] text-text-secondary max-w-[860px] mx-auto">In 4 simple steps, transform your diet with the power of artificial intelligence</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-7 mt-6">
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-primary-soft)] mx-auto mb-3 flex items-center justify-center text-[var(--color-primary)]">
+              <ion-icon name="person-outline" class="text-[28px]"></ion-icon>
+            </div>
+            <div class="bg-white rounded-[14px] px-5 py-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+              <h3 class="font-semibold text-[18px] text-text-primary m-0">Complete your profile</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">Goals, activity, preferences and allergies</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-primary-soft)] mx-auto mb-3 flex items-center justify-center text-[var(--color-primary)]">
+              <ion-icon name="sparkles-outline" class="text-[28px]"></ion-icon>
+            </div>
+            <div class="bg-white rounded-[14px] px-5 py-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+              <h3 class="font-semibold text-[18px] text-text-primary m-0">Generate your menu with AI</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">Personalized weekly plan with calories and macros</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-primary-soft)] mx-auto mb-3 flex items-center justify-center text-[var(--color-primary)]">
+              <ion-icon name="cart-outline" class="text-[28px]"></ion-icon>
+            </div>
+            <div class="bg-white rounded-[14px] px-5 py-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+              <h3 class="font-semibold text-[18px] text-text-primary m-0">Buy with the list</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">Automatic list by categories with exact quantities</p>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="w-16 h-16 rounded-full bg-[var(--color-primary-soft)] mx-auto mb-3 flex items-center justify-center text-[var(--color-primary)]">
+              <ion-icon name="trending-up-outline" class="text-[28px]"></ion-icon>
+            </div>
+            <div class="bg-white rounded-[14px] px-5 py-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+              <h3 class="font-semibold text-[18px] text-text-primary m-0">Track your progress</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">Weekly completion and progress on your goals</p>
+            </div>
+          </div>
         </div>
-        <div class="grid md:grid-cols-2 gap-6 md:col-span-2">
-          <div class="card p-5">
-            <h3 class="font-semibold">Complete your profile</h3>
-            <p class="mt-2 text-text-secondary">Tell us your interests and preferences.</p>
+      </div>
+    </section>
+
+    <section id="everything-you-need" class="section bg-[var(--color-primary-soft)]">
+      <div class="container-max">
+        <h2 class="text-center font-bold tracking-tight text-[28px] leading-[1.25] sm:text-[32px] md:text-[36px] lg:text-[40px] text-[var(--color-text-primary)]">Everything you need in one app</h2>
+        <p class="text-center text-[15px] sm:text-[16px] text-text-secondary max-w-[820px] mx-auto mt-3">Smart tools that adapt to your lifestyle and goals</p>
+
+        <div class="grid md:grid-cols-2 gap-6 lg:gap-8 mt-8">
+          <div class="bg-white rounded-[16px] px-6 py-6 shadow-[0_10px_18px_rgba(0,0,0,.06)] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-[12px] bg-[var(--color-primary-soft)] flex items-center justify-center text-[var(--color-primary)] shrink-0">
+              <ion-icon name="calendar-outline" class="text-[22px]"></ion-icon>
+            </div>
+            <div>
+              <h3 class="font-semibold text-[20px] text-text-primary m-0">Complete weekly plan</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">7 days × 4 meals personalized to your goals and dietary preferences</p>
+            </div>
           </div>
-          <div class="card p-5">
-            <h3 class="font-semibold">Get your meal list</h3>
-            <p class="mt-2 text-text-secondary">Access a weekly list with 4 meals per day.</p>
+
+          <div class="bg-white rounded-[16px] px-6 py-6 shadow-[0_10px_18px_rgba(0,0,0,.06)] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-[12px] bg-[var(--color-primary-soft)] flex items-center justify-center text-[var(--color-primary)] shrink-0">
+              <ion-icon name="list-outline" class="text-[22px]"></ion-icon>
+            </div>
+            <div>
+              <h3 class="font-semibold text-[20px] text-text-primary m-0">Smart list by categories</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">Organized shopping with exact quantities: fruits, vegetables, proteins, dairy</p>
+            </div>
           </div>
-          <div class="card p-5">
-            <h3 class="font-semibold">Check what to buy</h3>
-            <p class="mt-2 text-text-secondary">Get a weekly list of foods to buy.</p>
+
+          <div class="bg-white rounded-[16px] px-6 py-6 shadow-[0_10px_18px_rgba(0,0,0,.06)] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-[12px] bg-[var(--color-primary-soft)] flex items-center justify-center text-[var(--color-primary)] shrink-0">
+              <ion-icon name="calculator-outline" class="text-[22px]"></ion-icon>
+            </div>
+            <div>
+              <h3 class="font-semibold text-[20px] text-text-primary m-0">Daily calories and macros</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">Automatic calculation of proteins, carbs and fats for your goals</p>
+            </div>
           </div>
-          <div class="card p-5">
-            <h3 class="font-semibold">Track</h3>
-            <p class="mt-2 text-text-secondary">Record completed meals and tracking indicators.</p>
+
+          <div class="bg-white rounded-[16px] px-6 py-6 shadow-[0_10px_18px_rgba(0,0,0,.06)] flex items-start gap-4">
+            <div class="w-12 h-12 rounded-[12px] bg-[var(--color-primary-soft)] flex items-center justify-center text-[var(--color-primary)] shrink-0">
+              <ion-icon name="radio-button-on-outline" class="text-[22px]"></ion-icon>
+            </div>
+            <div>
+              <h3 class="font-semibold text-[20px] text-text-primary m-0">Visible and sustainable progress</h3>
+              <p class="mt-2 text-text-secondary text-[15px]">Weekly tracking with adjustable pace: slow, moderate, fast or aggressive</p>
+            </div>
           </div>
         </div>
       </div>
@@ -88,18 +205,28 @@ import Layout from "../../layouts/Layout.astro";
 
     <section id="plan" class="section">
       <div class="container-max">
-        <div class="max-w-xl">
-          <h2 class="text-2xl md:text-3xl font-semibold">A free plan to start</h2>
-          <p class="mt-2 text-text-secondary">Plenu is in Alpha and will be free for a limited time to gather feedback and improve.</p>
-          <div class="card p-6 mt-4">
-            <div class="text-3xl font-bold">$0<span class="text-[15px] font-medium text-text-secondary">/mo</span></div>
-            <ul class="mt-3 list-disc list-inside text-[15px] text-text-secondary">
-              <li>Access to the iOS app</li>
-              <li>Weekly meal list powered by AI</li>
-              <li>Weekly grocery list powered by AI</li>
-              <li>Meal completion and indicators tracking</li>
+        <h2 class="text-center font-bold tracking-tight text-[28px] leading-[1.25] sm:text-[32px] md:text-[36px] lg:text-[40px] text-[var(--color-text-primary)]">A free plan to start</h2>
+        <p class="text-center text-[15px] sm:text-[16px] text-text-secondary max-w-[820px] mx-auto mt-3">Plenu is in Alpha and will be free for a limited time to gather feedback and improve.</p>
+        <div class="max-w-2xl mx-auto mt-8">
+          <div class="bg-white rounded-[16px] p-6 md:p-8 shadow-[0_10px_18px_rgba(0,0,0,.06)] border border-border">
+            <div class="flex items-center gap-3">
+              <div class="text-5xl font-bold">$0</div>
+              <span class="text-[15px] font-medium text-text-secondary">/mo</span>
+              <span class="ml-auto inline-flex items-center gap-2 text-[13px] font-medium text-text-secondary bg-[var(--accent-soft)] text-[var(--accent)] px-3 py-1 rounded-full">Alpha</span>
+            </div>
+            <ul class="mt-5 space-y-2 text-[15px] text-text-secondary">
+              <li class="flex items-start gap-2"><ion-icon name="checkmark-outline" class="text-[var(--color-primary)] text-[18px] mt-[2px]"></ion-icon><span>Access to the iOS app</span></li>
+              <li class="flex items-start gap-2"><ion-icon name="checkmark-outline" class="text-[var(--color-primary)] text-[18px] mt-[2px]"></ion-icon><span>Weekly meal list powered by AI</span></li>
+              <li class="flex items-start gap-2"><ion-icon name="checkmark-outline" class="text-[var(--color-primary)] text-[18px] mt-[2px]"></ion-icon><span>Weekly grocery list powered by AI</span></li>
+              <li class="flex items-start gap-2"><ion-icon name="checkmark-outline" class="text-[var(--color-primary)] text-[18px] mt-[2px]"></ion-icon><span>Meal completion and indicators tracking</span></li>
             </ul>
-            <a href="#cta" class="btn-primary mt-4 inline-flex">Get started</a>
+            <a href="#cta" class="btn btn-primary btn--lg btn--center mt-6 inline-flex">
+              Get started
+              <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -107,43 +234,96 @@ import Layout from "../../layouts/Layout.astro";
 
     <section id="faq" class="section bg-[var(--color-bg-3)]">
       <div class="container-max">
-        <h2 class="text-2xl md:text-3xl font-semibold">Frequently asked questions</h2>
-        <div class="mt-4 grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 class="font-semibold">Does Plenu replace professional health advice?</h3>
-            <p class="mt-2 text-text-secondary">No. Plenu complements, not replaces, professional advice.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold">How do you protect my data?</h3>
-            <p class="mt-2 text-text-secondary">We care about your privacy and follow best security practices.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold">Can Plenu be wrong?</h3>
-            <p class="mt-2 text-text-secondary">Yes, that's why your judgment and feedback are important.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold">Still have questions?</h3>
-            <p class="mt-2 text-text-secondary">Write to us and we'll help you.</p>
-          </div>
+        <h2 class="text-center font-bold tracking-tight text-[28px] leading-[1.25] sm:text-[32px] md:text-[36px] lg:text-[40px] text-[var(--color-text-primary)]">Frequently asked questions</h2>
+        <div class="mt-6 grid md:grid-cols-2 gap-6">
+          <!-- Features -->
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">How does the AI personalize my menus?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">Our AI analyzes your complete profile: goals (lose weight, gain muscle, maintain), activity level, dietary preferences, allergies and intolerances. It generates unique menus tailored to your caloric needs and macronutrient distribution.</p>
+          </details>
+
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">How accurate are the calorie calculations?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">We use a comprehensive nutrition database with 50,000+ foods. Calculations include cooking methods and exact portions, with 95% accuracy validated by certified nutritionists.</p>
+          </details>
+
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">Does it work offline?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">Once your weekly menu is downloaded, you can access all recipes and the shopping list offline. You only need internet to generate new menus or sync your progress.</p>
+          </details>
+
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">What if I have allergies or restrictions?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">Plenu handles 20+ types of restrictions: vegetarian, vegan, gluten-free, lactose-free, kosher, halal, and specific allergies. All menus fully respect your dietary limitations.</p>
+          </details>
+
+          <!-- Other -->
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">Does Plenu replace professional health advice?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">No. Plenu complements, it does not replace, professional guidance. The app focuses on daily support and nutrition education. For diagnoses, medical conditions or significant changes to your treatment, always consult a specialist.</p>
+          </details>
+
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">How do you protect my data?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">We care about your privacy and apply strong security practices. We use encryption in transit and at rest, access controls and data minimization. You can also request to download or delete your information at any time.</p>
+          </details>
+
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">Can Plenu be wrong?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">Yes, like any technology, it can make mistakes. That’s why we value your feedback and encourage using your own judgment. For health concerns, always prioritize the advice of a qualified professional.</p>
+          </details>
+
+          <!-- Last -->
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">Still have questions?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">Write to us and we’ll help as soon as possible. We answer questions about app usage, plans and privacy. Your feedback helps us improve the product week after week.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <section id="purpose" class="section">
-      <div class="container-max max-w-3xl">
-        <h2 class="text-2xl md:text-3xl font-semibold">Why Plenu? Our purpose</h2>
-        <p class="mt-2 text-text-secondary">We know changing habits is hard. That's why we created Plenu: to use technology to bring well-being to people, starting with ourselves.</p>
-        <p class="mt-2 text-text-secondary">Let's walk together.</p>
+      <div class="container-max">
+        <h2 class="text-center font-bold tracking-tight text-[28px] leading-[1.25] sm:text-[32px] md:text-[36px] lg:text-[40px] text-[var(--color-text-primary)]">Why Plenu? Our purpose</h2>
+        <div class="max-w-[820px] mx-auto mt-4 bg-white rounded-[16px] p-6 md:p-8 shadow-[0_10px_18px_rgba(0,0,0,.06)] border border-border text-[15px] text-text-secondary space-y-3">
+          <p>We know that changing eating and self-care habits is a huge challenge. That's why we created Plenu: to use technology to bring well-being to people, starting with ourselves.</p>
+          <p class="font-medium text-text-primary">Let's walk together.</p>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="section border-t border-border text-[13px] text-text-secondary">
-    <div class="container-max flex flex-col sm:flex-row items-center justify-between gap-4">
-      <span>© {new Date().getFullYear()} Plenu</span>
-      <div class="flex items-center gap-4">
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
+  <footer class="bg-[#0f1927] text-white/80">
+    <div class="container-max py-4 flex items-center justify-between">
+      <span class="text-[13px]">© {new Date().getFullYear()} Plenu. All rights reserved.</span>
+      <div class="flex items-center gap-5 text-white/70">
+        <a href="#" aria-label="Instagram" class="hover:opacity-90"><ion-icon name="logo-instagram" class="text-[18px]"></ion-icon></a>
+        <a href="#" aria-label="X" class="hover:opacity-90"><ion-icon name="logo-twitter" class="text-[18px]"></ion-icon></a>
+        <a href="#" aria-label="Email" class="hover:opacity-90"><ion-icon name="mail-outline" class="text-[18px]"></ion-icon></a>
       </div>
     </div>
   </footer>

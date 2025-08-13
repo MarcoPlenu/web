@@ -10,10 +10,74 @@ const { title = 'Plenu', lang = 'es', description = 'Adoptar hábitos es más f�
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="theme-color" content="#378560" />
+    <meta name="robots" content="index,follow" />
     <meta name="description" content={description} />
+    {(() => {
+      const kwEs = 'hábitos, alimentación saludable, IA, menú semanal, lista de compras, calorías, macros, nutrición, app iOS, bienestar, plenu';
+      const kwEn = 'habits, healthy eating, AI, weekly menu, grocery list, calories, macros, nutrition, iOS app, wellness, plenu';
+      const keywords = lang === 'es' ? kwEs : kwEn;
+      return <meta name="keywords" content={keywords} />;
+    })()}
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="image" href="/banner_plenu_x2.png" />
+    {(() => {
+      const siteUrl = import.meta.env.PUBLIC_SITE_URL || '';
+      const path = Astro.url?.pathname || '/';
+      const canonical = siteUrl ? new URL(path, siteUrl).toString() : path;
+      const otherLang = lang === 'es' ? 'en' : 'es';
+      const altEs = siteUrl ? new URL('/es', siteUrl).toString() : '/es';
+      const altEn = siteUrl ? new URL('/en', siteUrl).toString() : '/en';
+      const xDefault = siteUrl ? new URL('/', siteUrl).toString() : '/';
+      const locale = lang === 'es' ? 'es_ES' : 'en_US';
+      const ogImagePath = '/banner_plenu_x2.png';
+      const ogImage = siteUrl ? new URL(ogImagePath, siteUrl).toString() : ogImagePath;
+      return (
+        <>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hrefLang="es" href={altEs} />
+          <link rel="alternate" hrefLang="en" href={altEn} />
+          <link rel="alternate" hrefLang="x-default" href={xDefault} />
+
+          <meta property="og:type" content="website" />
+          <meta property="og:site_name" content="Plenu" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:url" content={canonical} />
+          <meta property="og:locale" content={locale} />
+          <meta property="og:image" content={ogImage} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={title} />
+          <meta name="twitter:description" content={description} />
+          <meta name="twitter:image" content={ogImage} />
+          <script type="application/ld+json" set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Plenu',
+            url: siteUrl || undefined,
+            logo: siteUrl ? new URL('/logo_plenu.png', siteUrl).toString() : '/logo_plenu.png'
+          })}></script>
+          <script type="application/ld+json" set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Plenu',
+            url: siteUrl || undefined,
+            inLanguage: lang,
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: `${siteUrl || ''}/?q={search_term_string}`,
+              'query-input': 'required name=search_term_string'
+            }
+          })}></script>
+        </>
+      );
+    })()}
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </head>
   <body>
     <slot />
