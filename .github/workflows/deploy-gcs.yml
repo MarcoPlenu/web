@@ -24,9 +24,9 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Install pnpm
+      - name: Install pnpm (v10)
         run: |
-          npm i -g pnpm@8
+          npm i -g pnpm@10
 
       - name: Install deps
         run: pnpm install --frozen-lockfile
