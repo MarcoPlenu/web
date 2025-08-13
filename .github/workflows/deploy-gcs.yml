@@ -1,0 +1,63 @@
+name: Deploy to GCS (Static)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  GCP_BUCKET: www.plenu.app
+  PUBLIC_SITE_URL: https://www.plenu.app
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+        env:
+          PUBLIC_SITE_URL: ${{ env.PUBLIC_SITE_URL }}
+
+      - name: Auth to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Upload to GCS (rsync)
+        run: gsutil -m rsync -r -d dist gs://$GCP_BUCKET
+
+      - name: Ensure website config
+        run: gsutil web set -m index.html -e 404.html gs://$GCP_BUCKET || true
+
+      - name: Set Cache-Control for HTML (no-cache)
+        run: |
+          gsutil -m setmeta -h "Cache-Control:public, max-age=0, must-revalidate" gs://$GCP_BUCKET/**/*.html || true
+
+      - name: Set Cache-Control for assets (long cache)
+        run: |
+          gsutil -m setmeta -h "Cache-Control:public, max-age=31536000, immutable" gs://$GCP_BUCKET/**/*.{css,js,png,svg,webp,jpg,jpeg,ico} || true
+
+

@@ -57,6 +57,20 @@ Opción simple con Cloud Storage + Cloud CDN:
 
 Alternativa: Firebase Hosting (CDN + SSL) o Cloud Run si se requiere SSR (no necesario aquí)
 
+### CI/CD desde `main` a GCS
+
+Workflow: `.github/workflows/deploy-gcs.yml`
+
+1. Crear un Service Account con permisos mínimos: `Storage Object Admin` sobre el bucket
+2. Generar clave JSON y guardarla como secreto en GitHub: `GCP_SA_KEY`
+3. Crear bucket `www.plenu.app` y habilitar ACL pública de lectura (o uniform bucket-level access + política pública)
+4. Dar permisos a `allUsers` con `Storage Object Viewer` si usas ACLs
+5. Push a `main` dispara build y `gsutil rsync` → `gs://www.plenu.app`
+
+Headers:
+- HTML: `Cache-Control: public, max-age=0, must-revalidate`
+- Assets: `Cache-Control: public, max-age=31536000, immutable`
+
 ## Notas
 
 - Los commits se realizan solo bajo indicación (flujo acordado)
