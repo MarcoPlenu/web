@@ -8,7 +8,7 @@
 
 ## Requisitos
 
-- Node 18+ (LTS)
+- Node 22+
 - pnpm 8+
 
 ## Scripts
