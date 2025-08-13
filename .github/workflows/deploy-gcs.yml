@@ -44,15 +44,10 @@ jobs:
           service_account: github-deployer@plenu-prod.iam.gserviceaccount.com
 
       - name: Auth to Google Cloud (Service Account JSON)
-        if: ${{ vars.WIF_PROVIDER == '' && secrets.GCP_SA_KEY != '' }}
+        if: ${{ vars.WIF_PROVIDER == '' }}
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Fail if no GCP auth configured
-        if: ${{ vars.WIF_PROVIDER == '' && secrets.GCP_SA_KEY == '' }}
-        run: |
-          echo "Falta configurar autenticación GCP. Define la variable de repo WIF_PROVIDER o el secreto GCP_SA_KEY." && exit 1
 
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2
