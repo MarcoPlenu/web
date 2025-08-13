@@ -67,6 +67,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "gce"
     networking.gke.io/managed-certificates: plenu-cert
+    kubernetes.io/ingress.global-static-ip-name: www-plenu-static-ip
     # Habilita HTTPS; si quieres forzar HTTPS, puedes usar Cloudflare o reglas de LB
 spec:
   rules:
