@@ -16,7 +16,7 @@ import Layout from "../../layouts/Layout.astro";
           <a href="#faq" class="text-text-primary hover:opacity-80">FAQ</a>
           <a href="#proposito" class="text-text-primary hover:opacity-80">Propósito</a>
         </nav>
-        <div class="flex items-center gap-2 flex-nowrap">
+        <div class="hidden sm:flex items-center gap-2 flex-nowrap">
           <a href="/en" class="text-[13px] text-text-secondary shrink-0">EN</a>
           <a href="#plan" class="btn btn-primary btn--md btn--center shrink-0">
             Comenzar ahora
@@ -25,11 +25,11 @@ import Layout from "../../layouts/Layout.astro";
               <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="sm:hidden p-2 rounded-md text-text-primary">
-            <ion-icon id="icon-open" name="menu-outline" class="text-[22px]"></ion-icon>
-            <ion-icon id="icon-close" name="close-outline" class="text-[22px] hidden"></ion-icon>
-          </button>
         </div>
+        <button id="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menú" class="sm:hidden p-2 rounded-md text-text-primary">
+          <ion-icon id="icon-open" name="menu-outline" class="text-[22px]"></ion-icon>
+          <ion-icon id="icon-close" name="close-outline" class="text-[22px] hidden"></ion-icon>
+        </button>
       </div>
     </div>
     <div id="mobile-menu" class="sm:hidden hidden border-t border-border">
@@ -41,6 +41,9 @@ import Layout from "../../layouts/Layout.astro";
           <a href="#plan" class="text-text-primary">Plan</a>
           <a href="#faq" class="text-text-primary">FAQ</a>
           <a href="#proposito" class="text-text-primary">Propósito</a>
+          <div class="h-px bg-[var(--color-border)] my-2"></div>
+          <a href="/en" class="btn btn--md btn-gray">EN</a>
+          <a href="#plan" class="btn btn-primary btn--md btn--center mt-1">Comenzar ahora</a>
         </nav>
       </div>
     </div>
@@ -55,6 +58,15 @@ import Layout from "../../layouts/Layout.astro";
         menu?.classList.toggle('hidden');
         iconOpen?.classList.toggle('hidden');
         iconClose?.classList.toggle('hidden');
+      });
+      const closeMenu = () => {
+        btn?.setAttribute('aria-expanded', 'false');
+        menu?.classList.add('hidden');
+        iconOpen?.classList.remove('hidden');
+        iconClose?.classList.add('hidden');
+      };
+      menu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMenu);
       });
     </script>
   </header>

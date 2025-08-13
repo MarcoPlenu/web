@@ -78,9 +78,144 @@ const { title = 'Plenu', lang = 'es', description = 'Adoptar hábitos es más f�
     })()}
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L82NJECKXP"></script>
+    <script type="module">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);} // eslint-disable-line
+      gtag('js', new Date());
+
+      gtag('config', 'G-L82NJECKXP');
+    </script>
   </head>
   <body>
     <slot />
+
+    <div id="contact-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-[999] p-4">
+      <div class="bg-white w-full max-w-md rounded-xl shadow-xl p-5 sm:p-6 md:p-8">
+        <div class="relative">
+          <h3 class="text-center text-xl sm:text-2xl font-semibold text-text-primary">Quiero probar Plenu</h3>
+          <button id="contact-close" aria-label="Cerrar" class="absolute right-0 top-0 p-1 text-text-secondary hover:opacity-80">
+            <ion-icon name="close-outline" class="text-[22px]"></ion-icon>
+          </button>
+        </div>
+        <form id="contact-form" class="mt-4 space-y-3">
+          <div>
+            <label class="block text-sm text-text-secondary mb-1">Nombre</label>
+            <input name="name" required class="w-full border border-border rounded-md px-3 h-10" />
+          </div>
+          <div>
+            <label class="block text-sm text-text-secondary mb-1">Correo</label>
+            <input type="email" name="email" required class="w-full border border-border rounded-md px-3 h-10" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-sm text-text-secondary mb-1">Teléfono (opcional)</label>
+              <input type="tel" name="phone" class="w-full border border-border rounded-md px-3 h-10" />
+            </div>
+            <div>
+              <label class="block text-sm text-text-secondary mb-1">País (opcional)</label>
+              <input name="country" class="w-full border border-border rounded-md px-3 h-10" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm text-text-secondary mb-1">¿Por qué te gustaría probar la app?</label>
+            <textarea name="reason" rows="4" required class="w-full border border-border rounded-md px-3 py-2"></textarea>
+          </div>
+          <label class="flex items-center gap-2 text-sm text-text-secondary select-none">
+            <input type="checkbox" name="marketing_opt_in" class="w-4 h-4 border border-border rounded" />
+            Quiero recibir novedades y actualizaciones.
+          </label>
+          <div class="flex items-center justify-end gap-2 pt-2">
+            <button type="button" id="contact-cancel" class="btn btn--md btn-gray">Cancelar</button>
+            <button type="submit" class="btn btn--md btn-primary">Enviar</button>
+          </div>
+          <p id="contact-success" class="hidden text-[13px] text-green-600">¡Gracias! Te contactaremos pronto.</p>
+          <p id="contact-error" class="hidden text-[13px] text-red-600">Ocurrió un error. Intenta nuevamente.</p>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      const modal = document.getElementById('contact-modal');
+      const openers = document.querySelectorAll('a[href="#plan"], a[href="#cta"], .js-open-contact');
+      const closeBtn = document.getElementById('contact-close');
+      const cancelBtn = document.getElementById('contact-cancel');
+      const form = document.getElementById('contact-form');
+      const successMsg = document.getElementById('contact-success');
+      const errorMsg = document.getElementById('contact-error');
+
+      const openModal = (e) => {
+        if (e) e.preventDefault();
+        modal?.classList.remove('hidden');
+        modal?.classList.add('flex');
+      };
+      const closeModal = () => {
+        modal?.classList.add('hidden');
+        modal?.classList.remove('flex');
+      };
+      openers.forEach((el) => el.addEventListener('click', openModal));
+      closeBtn?.addEventListener('click', closeModal);
+      cancelBtn?.addEventListener('click', closeModal);
+      modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+      async function submitContact(data){
+        try{
+          const payload = {
+            name: data.get('name'),
+            email: data.get('email'),
+            reason: data.get('reason'),
+            phone: data.get('phone') || '',
+            country: data.get('country') || '',
+            marketing_opt_in: data.get('marketing_opt_in') === 'on' ? 'yes' : 'no',
+            locale: document.documentElement.lang || 'es',
+            user_agent: navigator.userAgent,
+            page: location.href,
+            referrer: document.referrer || '',
+            _cc: 'rodrigo@plenu.app',
+            _subject: 'Nuevo lead desde plenu.app',
+            _template: 'table'
+          };
+          const res = await fetch('https://formsubmit.co/ajax/marco@plenu.app', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const body = await res.text();
+          console.debug('FormSubmit response', { status: res.status, body: body.slice(0, 200) });
+          if(!res.ok) throw new Error('FormSubmit error ' + res.status);
+          return true;
+        }catch(err){
+          console.error('submitContact error', err);
+          return false;
+        }
+      }
+
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        successMsg?.classList.add('hidden');
+        errorMsg?.classList.add('hidden');
+        const submitBtn = form.querySelector('button[type="submit"]');
+        submitBtn?.setAttribute('disabled', 'true');
+        const ok = await submitContact(new FormData(form));
+        submitBtn?.removeAttribute('disabled');
+        if(ok){
+          successMsg?.classList.remove('hidden');
+          if (window.gtag) {
+            window.gtag('event', 'lead_submit', {
+              event_category: 'lead',
+              event_label: document.documentElement.lang || 'es',
+              value: 1
+            });
+          }
+          form.reset();
+          setTimeout(closeModal, 1200);
+        }else{
+          errorMsg?.classList.remove('hidden');
+        }
+      });
+    </script>
   </body>
   <style is:global>
     @import '../styles/global.css';

@@ -76,6 +76,8 @@
   .btn--full{ width:100%; }
   .btn .icon{ width:16px !important; height:16px !important; margin-left:.125rem; flex: 0 0 16px; display:inline-block; }
   .btn--center{ justify-content: center !important; }
+  .btn-gray{ border:1px solid var(--color-border); background: var(--color-bg-3); color: var(--color-text-primary); }
+  .btn-gray:hover{ background: var(--color-bg-2); }
   .text-text-secondary{ color: var(--color-text-secondary); }
   .text-text-primary{ color: var(--color-text-primary); }
   .border-border{ border-color: var(--border); }

@@ -81,6 +81,13 @@ spec:
     - host: www.plenu.app
       http:
         paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: plenu-api
+                port:
+                  number: 80
           - path: /
             pathType: Prefix
             backend:
