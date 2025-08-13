@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: web
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plenu-web
+  namespace: web
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: plenu-web
+  template:
+    metadata:
+      labels:
+        app: plenu-web
+    spec:
+      containers:
+        - name: nginx
+          image: us-central1-docker.pkg.dev/plenu-prod/static-web/plenu-web:initial
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: plenu-web
+  namespace: web
+spec:
+  type: ClusterIP
+  selector:
+    app: plenu-web
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080
+---
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: plenu-cert
+  namespace: web
+spec:
+  domains:
+    - www.plenu.app
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: plenu-web
+  namespace: web
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    networking.gke.io/managed-certificates: plenu-cert
+    # Habilita HTTPS; si quieres forzar HTTPS, puedes usar Cloudflare o reglas de LB
+spec:
+  rules:
+    - host: www.plenu.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: plenu-web
+                port:
+                  number: 80
+
