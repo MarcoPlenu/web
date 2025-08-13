@@ -8,7 +8,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  redirects: {
-    '/': '/es'
-  }
+  // Nota: la redirección raíz → /es la maneja Nginx/Worker en edge para evitar puertos en Location
 });
