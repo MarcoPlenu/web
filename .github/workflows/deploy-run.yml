@@ -1,9 +1,7 @@
-name: Deploy to Cloud Run (Static)
+name: Deploy to Cloud Run (Static) [manual]
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
 
 env:
   PROJECT_ID: plenu-prod
