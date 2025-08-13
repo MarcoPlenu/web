@@ -1,0 +1,72 @@
+name: Deploy to Cloud Run (Static)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+env:
+  PROJECT_ID: plenu-prod
+  REGION: us-central1
+  SERVICE: plenu-web
+  REPO: static-web
+  PUBLIC_SITE_URL: https://www.plenu.app
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install pnpm
+        run: npm i -g pnpm@10
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Astro (for local validation)
+        run: pnpm build
+        env:
+          PUBLIC_SITE_URL: ${{ env.PUBLIC_SITE_URL }}
+
+      - name: Auth GCP (WIF)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER || vars.WIF_PROVIDER }}
+          service_account: github-deployer@plenu-prod.iam.gserviceaccount.com
+
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Artifact Registry repo
+        run: |
+          gcloud artifacts repositories create $REPO --repository-format=docker --location=$REGION || true
+
+      - name: Build and push image
+        run: |
+          IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$SERVICE:${{ github.sha }}"
+          docker build -t "$IMAGE" --build-arg PUBLIC_SITE_URL=$PUBLIC_SITE_URL .
+          gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
+          docker push "$IMAGE"
+
+      - name: Deploy to Cloud Run
+        run: |
+          IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$SERVICE:${{ github.sha }}"
+          gcloud run deploy $SERVICE \
+            --image "$IMAGE" \
+            --platform managed \
+            --region $REGION \
+            --allow-unauthenticated \
+            --max-instances 2 \
+            --port 8080
+
+
