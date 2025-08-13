@@ -47,8 +47,14 @@ jobs:
           workload_identity_provider: ${{ secrets.WIF_PROVIDER || vars.WIF_PROVIDER }}
           service_account: github-deployer@plenu-prod.iam.gserviceaccount.com
 
-      - name: Setup gcloud
+      - name: Setup gcloud (with GKE auth plugin + kubectl)
         uses: google-github-actions/setup-gcloud@v2
+        with:
+          install_components: true
+          components: gke-gcloud-auth-plugin,kubectl
+
+      - name: Enable GKE auth plugin env
+        run: echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
 
       - name: Configure docker for Artifact Registry
         run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
