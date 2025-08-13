@@ -38,10 +38,11 @@ jobs:
         env:
           PUBLIC_SITE_URL: ${{ env.PUBLIC_SITE_URL }}
 
-      - name: Auth to Google Cloud
+      - name: Auth to Google Cloud (Workload Identity Federation)
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          workload_identity_provider: ${{ vars.WIF_PROVIDER }}
+          service_account: github-deployer@plenu-prod.iam.gserviceaccount.com
 
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v2

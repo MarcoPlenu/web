@@ -62,9 +62,12 @@ Alternativa: Firebase Hosting (CDN + SSL) o Cloud Run si se requiere SSR (no nec
 Workflow: `.github/workflows/deploy-gcs.yml`
 
 1. Crear un Service Account con permisos mínimos: `Storage Object Admin` sobre el bucket
-2. Generar clave JSON y guardarla como secreto en GitHub: `GCP_SA_KEY`
+2. Recomendado: Workload Identity Federation (sin claves JSON)
+   - Crear un Proveedor de identidad de trabajo (WIF) para GitHub OIDC
+   - Conceder a `github-deployer@plenu-prod.iam.gserviceaccount.com` la `impersonation` desde el WIF
+   - En GitHub, definir `Repository variable` `WIF_PROVIDER` con el recurso del proveedor
 3. Crear bucket `www.plenu.app` y habilitar ACL pública de lectura (o uniform bucket-level access + política pública)
-4. Dar permisos a `allUsers` con `Storage Object Viewer` si usas ACLs
+4. Dar permisos a `allUsers` con `Storage Object Viewer` si usas ACLs (solo si sirves directo desde GCS)
 5. Push a `main` dispara build y `gsutil rsync` → `gs://www.plenu.app`
 
 Headers:
