@@ -57,14 +57,10 @@ jobs:
       - name: Enable GKE auth plugin env
         run: echo "USE_GKE_GCLOUD_AUTH_PLUGIN=True" >> $GITHUB_ENV
 
-      - name: Configure docker for Artifact Registry
-        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
-
-      - name: Build and push image
+      - name: Build and push image with Cloud Build (faster inside GCP)
         run: |
           IMAGE="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          docker build -t "$IMAGE" --build-arg PUBLIC_SITE_URL=${{ env.PUBLIC_SITE_URL }} .
-          docker push "$IMAGE"
+          gcloud builds submit --tag "$IMAGE" .
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
       - name: Get GKE credentials
