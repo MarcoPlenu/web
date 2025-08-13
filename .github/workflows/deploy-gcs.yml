@@ -45,12 +45,6 @@ jobs:
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
           service_account: github-deployer@plenu-prod.iam.gserviceaccount.com
 
-      - name: Setup gcloud with Service Account JSON (fallback)
-        if: ${{ vars.WIF_PROVIDER == '' }}
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          export_default_credentials: true
 
       - name: Setup gcloud (tools)
         if: ${{ env.WIF_PROVIDER != '' }}
