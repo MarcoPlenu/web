@@ -248,29 +248,28 @@ import Layout from "../../layouts/Layout.astro";
       <div class="container-max">
         <h2 class="text-center font-bold tracking-tight text-[28px] leading-[1.25] sm:text-[32px] md:text-[36px] lg:text-[40px] text-[var(--color-text-primary)]">Preguntas frecuentes</h2>
         <div class="mt-6 grid md:grid-cols-2 gap-6">
-          <!-- Funcionalidades -->
           <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
             <summary class="flex items-center justify-between cursor-pointer select-none">
-              <span class="font-semibold text-text-primary">¿Cómo personaliza la IA mis menús?</span>
+              <span class="font-semibold text-text-primary">¿El menú de alimentación aplica para todos?</span>
               <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
             </summary>
-            <p class="mt-3 text-text-secondary">Nuestra IA analiza tu perfil completo: objetivos (perder peso, ganar músculo, mantener), nivel de actividad, preferencias alimentarias, alergias e intolerancias. Genera menús únicos que se ajustan a tus necesidades calóricas y distribución de macronutrientes.</p>
+            <p class="mt-3 text-text-secondary">Es útil para la mayoría de las personas, ya sea que busquen mantener un peso saludable, perder grasa o ganar masa muscular, sin importar si consumen carne, son vegetarianos, veganos o tienen otras preferencias. Si tienes necesidades médicas específicas o condiciones de salud, lo recomendable es consultar antes a un profesional que revise tu situación personal. Si necesitas alguna recomendación de un profesional escríbenos a hola@plenu.app</p>
           </details>
 
           <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
             <summary class="flex items-center justify-between cursor-pointer select-none">
-              <span class="font-semibold text-text-primary">¿Qué tan precisos son los cálculos de calorías?</span>
+              <span class="font-semibold text-text-primary">¿Plenu reemplaza la consulta con un profesional de la salud?</span>
               <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
             </summary>
-            <p class="mt-3 text-text-secondary">Utilizamos la base de datos nutricional más completa con más de 50,000 alimentos. Los cálculos incluyen métodos de cocción y porciones exactas, con precisión del 95% validada por nutricionistas certificados.</p>
+            <p class="mt-3 text-text-secondary">No. Plenu complementa, no reemplaza, la consulta profesional. Para diagnósticos, condiciones médicas o cambios relevantes en tu tratamiento, consulta siempre con un especialista.</p>
           </details>
 
           <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
             <summary class="flex items-center justify-between cursor-pointer select-none">
-              <span class="font-semibold text-text-primary">¿Funciona sin conexión a internet?</span>
+              <span class="font-semibold text-text-primary">¿Personalizan mis menús de alimentación semanal?</span>
               <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
             </summary>
-            <p class="mt-3 text-text-secondary">Una vez descargado tu menú semanal, puedes acceder a todas las recetas y lista de compras sin conexión. Solo necesitas internet para generar nuevos menús o sincronizar tu progreso.</p>
+            <p class="mt-3 text-text-secondary">Sí. Plenu considera tu perfil completo —objetivos, nivel de actividad, preferencias, restricciones y necesidades calóricas y de macronutrientes— y usa IA para generar menús basados en él y en las guías de organismos internacionales como la OMS y otras fuentes reconocidas con respaldo científico y de acceso público.</p>
           </details>
 
           <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
@@ -278,24 +277,7 @@ import Layout from "../../layouts/Layout.astro";
               <span class="font-semibold text-text-primary">¿Qué pasa si tengo alergias o restricciones?</span>
               <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
             </summary>
-            <p class="mt-3 text-text-secondary">Plenu maneja más de 20 tipos de restricciones: vegetariano, vegano, sin gluten, sin lactosa, kosher, halal, y alergias específicas. Todos los menús respetan completamente tus limitaciones alimentarias.</p>
-          </details>
-
-          <!-- Otras -->
-          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
-            <summary class="flex items-center justify-between cursor-pointer select-none">
-              <span class="font-semibold text-text-primary">¿Plenu reemplaza la consulta con un profesional de la salud?</span>
-              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
-            </summary>
-            <p class="mt-3 text-text-secondary">No. Plenu complementa, no reemplaza, la consulta profesional. La guía de la app está pensada para apoyo cotidiano y educación nutricional. Para diagnósticos, condiciones médicas o cambios relevantes en tu tratamiento, consulta siempre con un especialista.</p>
-          </details>
-
-          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
-            <summary class="flex items-center justify-between cursor-pointer select-none">
-              <span class="font-semibold text-text-primary">¿Cómo protegen mis datos?</span>
-              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
-            </summary>
-            <p class="mt-3 text-text-secondary">Cuidamos tu privacidad y aplicamos buenas prácticas de seguridad. Usamos cifrado en tránsito y en reposo, controles de acceso y minimización de datos. Además, puedes solicitar descargar o eliminar tu información cuando quieras.</p>
+            <p class="mt-3 text-text-secondary">Plenu respeta tus limitaciones alimentarias si las indicas: vegetariano, vegano, sin gluten, sin lactosa, kosher, halal y alergias específicas. Recuerda que para diagnósticos o evaluaciones médicas siempre es recomendable consultar con un especialista.</p>
           </details>
 
           <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
@@ -303,16 +285,31 @@ import Layout from "../../layouts/Layout.astro";
               <span class="font-semibold text-text-primary">¿Plenu puede equivocarse?</span>
               <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
             </summary>
-            <p class="mt-3 text-text-secondary">Sí, como toda herramienta tecnológica, puede cometer errores. Por eso fomentamos tu feedback y el uso de tu propio criterio al seguir recomendaciones. Ante dudas de salud, prioriza siempre la opinión de un profesional.</p>
+            <p class="mt-3 text-text-secondary">Sí, como toda herramienta tecnológica. Por eso siempre debes usar tu criterio. Y ante dudas de salud, prioriza siempre la opinión de un profesional.</p>
           </details>
 
-          <!-- Última -->
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">¿Cómo protegen mis datos?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">Cuidamos tu privacidad con cifrado en tránsito y en reposo, controles de acceso y minimización de datos. Puedes solicitar descargar o eliminar tu información en cualquier momento. Y jamás compartimos datos que permitan individualizarte.</p>
+          </details>
+
+          <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
+            <summary class="flex items-center justify-between cursor-pointer select-none">
+              <span class="font-semibold text-text-primary">¿Funciona sin conexión a internet?</span>
+              <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
+            </summary>
+            <p class="mt-3 text-text-secondary">Sí. Una vez descargado tu menú semanal, puedes acceder a recetas y lista de compras sin conexión. Solo necesitas internet para generar nuevos menús o sincronizar tu progreso.</p>
+          </details>
+
           <details class="bg-white rounded-[12px] p-5 shadow-[0_10px_18px_rgba(0,0,0,.06)]">
             <summary class="flex items-center justify-between cursor-pointer select-none">
               <span class="font-semibold text-text-primary">¿Aún tienes dudas?</span>
               <ion-icon name="chevron-down-outline" class="text-[20px] text-text-secondary"></ion-icon>
             </summary>
-            <p class="mt-3 text-text-secondary">Escríbenos y te ayudamos a resolverlas cuanto antes. Respondemos consultas sobre el uso de la app, planes y privacidad. Tu retroalimentación nos permite mejorar el producto semana a semana.</p>
+            <p class="mt-3 text-text-secondary">Si tienes alguna pregunta específica o necesitas ayuda adicional, no dudes en contactarnos. Nuestro equipo estará encantado de ayudarte a resolver cualquier duda sobre Plenu y cómo puede ayudarte a alcanzar tus objetivos de salud y bienestar.</p>
           </details>
         </div>
       </div>

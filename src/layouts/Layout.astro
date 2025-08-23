@@ -39,9 +39,9 @@ const { title = 'Plenu', lang = 'es', description = 'Adoptar hábitos es más f�
       return (
         <>
           <link rel="canonical" href={canonical} />
-          <link rel="alternate" hrefLang="es" href={altEs} />
-          <link rel="alternate" hrefLang="en" href={altEn} />
-          <link rel="alternate" hrefLang="x-default" href={xDefault} />
+          <link rel="alternate" hreflang="es" href={altEs} />
+          <link rel="alternate" hreflang="en" href={altEn} />
+          <link rel="alternate" hreflang="x-default" href={xDefault} />
 
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="Plenu" />
@@ -146,7 +146,7 @@ const { title = 'Plenu', lang = 'es', description = 'Adoptar hábitos es más f�
       const successMsg = document.getElementById('contact-success');
       const errorMsg = document.getElementById('contact-error');
 
-      const openModal = (e) => {
+      const openModal = (e?: Event) => {
         if (e) e.preventDefault();
         modal?.classList.remove('hidden');
         modal?.classList.add('flex');
@@ -160,7 +160,7 @@ const { title = 'Plenu', lang = 'es', description = 'Adoptar hábitos es más f�
       cancelBtn?.addEventListener('click', closeModal);
       modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-      async function submitContact(data){
+      async function submitContact(data: FormData){
         try{
           const payload = {
             name: data.get('name'),
@@ -198,18 +198,18 @@ const { title = 'Plenu', lang = 'es', description = 'Adoptar hábitos es más f�
         errorMsg?.classList.add('hidden');
         const submitBtn = form.querySelector('button[type="submit"]');
         submitBtn?.setAttribute('disabled', 'true');
-        const ok = await submitContact(new FormData(form));
+        const ok = await submitContact(new FormData(form as HTMLFormElement));
         submitBtn?.removeAttribute('disabled');
         if(ok){
           successMsg?.classList.remove('hidden');
-          if (window.gtag) {
-            window.gtag('event', 'lead_submit', {
+          if ((window as any).gtag) {
+            (window as any).gtag('event', 'lead_submit', {
               event_category: 'lead',
               event_label: document.documentElement.lang || 'es',
               value: 1
             });
           }
-          form.reset();
+          (form as HTMLFormElement).reset();
           setTimeout(closeModal, 1200);
         }else{
           errorMsg?.classList.remove('hidden');
